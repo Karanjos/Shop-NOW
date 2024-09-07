@@ -3,6 +3,7 @@ import ManageProductsClient from "./ManageProductsClient";
 import getProducts from "@/actions/getProducts";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 import NullData from "@/app/components/NullData";
+import { Suspense } from "react";
 
 const ManageProducts = async () => {
   const products = await getProducts({ category: null, searchTerm: null });
@@ -15,7 +16,9 @@ const ManageProducts = async () => {
   return (
     <div className="py-8">
       <Container>
-        <ManageProductsClient products={products} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ManageProductsClient products={products} />
+        </Suspense>
       </Container>
     </div>
   );

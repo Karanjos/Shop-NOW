@@ -5,6 +5,7 @@ import getUsers from "@/actions/getUsers";
 import Container from "../components/Container";
 import BarGraph from "./BarGraph";
 import getGraphData from "@/actions/getGraphData";
+import { Suspense } from "react";
 
 const Admin = async () => {
   const products = await getProducts({ category: null });
@@ -17,7 +18,9 @@ const Admin = async () => {
       <Container>
         <Summary products={products} orders={orders} users={users} />
         <div className="mt-20 max-w-[1150px] mx-auto">
-          <BarGraph data={graphData} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <BarGraph data={graphData} />
+          </Suspense>
         </div>
       </Container>
     </div>
