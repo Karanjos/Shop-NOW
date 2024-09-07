@@ -7,7 +7,7 @@ import getOrdersByUserId from "@/actions/getOrdersByUserId";
 const Orders = async () => {
   const currentUser = await getCurrentUser();
 
-  if (!currentUser || currentUser.role !== "ADMIN") {
+  if (!currentUser) {
     return <NullData title="Oops! You are not authorized to view this page" />;
   }
 
